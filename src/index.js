@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Counter from './app'
 
 const App = () => {
   return (
     <>
-      React App!
+      <Counter />
     </>
   )
 }
