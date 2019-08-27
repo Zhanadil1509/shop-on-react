@@ -2,7 +2,8 @@ import React, {useState} from 'react'
 
 const Counter = ({min, max}) => {
 
-  const [cnt, setCnt] = useState(1)
+  const [cnt, setCnt] = useState(min)
+  const [inpV, setInpV] = useState(min)
 
   const increase = () => {
     setM(cnt + 1)
@@ -17,10 +18,23 @@ const Counter = ({min, max}) => {
     setCnt(count)
   }
 
+  const setVal = (newStr) => {
+    setInpV(newStr)
+  }
+
+  const applyVal = () => {
+    let str = parseInt(inpV)
+    setM(isNaN(str) ? min : str)
+  }
+
   return (
     <>
       <button onClick={decrease}>-</button>
-      <p>{cnt}</p>
+      <input
+        onChange={e => setVal(e.target.value)}
+        onBlur={applyVal}
+        value={cnt}
+      />
       <button onClick={increase}>+</button>
     </>
   )

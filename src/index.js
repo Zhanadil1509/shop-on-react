@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Counter from './app'
+import Counter from './counter'
 
 const App = () => {
   return (
     <>
-      <Counter min={1} max={5} />
+      <Counter min={10} max={25} />
     </>
   )
 }
