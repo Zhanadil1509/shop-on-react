@@ -5,7 +5,7 @@ import Counter from './app'
 const App = () => {
   return (
     <>
-      <Counter />
+      <Counter min={1} max={5} />
     </>
   )
 }
