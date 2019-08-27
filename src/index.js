@@ -1,13 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Counter from './counter'
+import React from 'react';
+import ReactDom from 'react-dom';
+import App from './app.js';
+import AppOld from './appDerived.js';
 
-const App = () => {
-  return (
-    <>
-      <Counter min={10} max={25} />
-    </>
-  )
-}
-
-ReactDOM.render(<App />, document.querySelector('#app'))
+ReactDom.render(<App/>, document.querySelector('#app'));
