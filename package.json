@@ -19,11 +19,15 @@
     "babel-loader": "^8.0.6",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
+    "css-loader": "^3.0.0",
+    "mini-css-extract-plugin": "^0.7.0",
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
+    "bootstrap": "^4.3.1",
+    "react-bootstrap": "^1.0.0-beta.9",    
   }
 }
