@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Form, Button, Modal} from 'react-bootstrap';
-import {observer} from 'mobx-react';
-import orderModel from '~s/order';
+import {observer, inject} from 'mobx-react';
 import cartModel from '~s/cart';
 
 import { routesMap } from '~/routes';
 import { Link } from 'react-router-dom';
 
-@observer class Order extends React.Component{
+@inject('stores') @observer class Order extends React.Component{
     state = {
         showModal: false
     }
@@ -28,6 +27,7 @@ import { Link } from 'react-router-dom';
     }
 
     render(){
+        let orderModel = this.props.stores.order;
         let formFields = [];
 
         for(let name in orderModel.formData){

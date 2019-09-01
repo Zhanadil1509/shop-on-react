@@ -1,30 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AppMinMax from '~c/inputs/minmax';
-
-import {observer} from 'mobx-react';
-import cartModel from '~s/cart.js';
-
 import { routesMap } from '~/routes';
 import { Link } from 'react-router-dom';
+import withStore from '~/hocs/withStore';
+import LinkButton from '~c/links/button';
 
-@observer class Cart extends React.Component{
+class Cart extends React.Component{
     render(){
-        let productsRows = cartModel.products.map((product, i) => {
+        let cartModel = this.props.stores.cart;
+
+        let productsRows = cartModel.productsDetailed.map((product, i) => {
             return (
                 <tr key={product.id}>
                     <td>{product.title}</td>
                     <td>{product.price}</td>
                     <td>
-                        <AppMinMax min={1} 
-                                   max={product.rest} 
-                                   cnt={product.current} 
-                                   onChange={cartModel.changeOn[i]}
+                        <AppMinMax 
+                            min={1} 
+                            max={product.rest} 
+                            cnt={product.cnt} 
+                            onChange={(cnt) => cartModel.change(product.id, cnt)}
                         />
                     </td>
-                    <td>{product.price * product.current}</td>
+                    <td>{product.price * product.cnt}</td>
                     <td>
-                        <button onClick={() => cartModel.remove(i)}>
+                        <button onClick={() => cartModel.remove(product.id)}>
                             X
                         </button>
                     </td>
@@ -53,10 +54,13 @@ import { Link } from 'react-router-dom';
                 <hr/>
                 <Link to={routesMap.order} className="btn btn-primary">
                     Send
-                </Link>
+                </Link>&nbsp;
+                <LinkButton to={routesMap.order} className="btn btn-primary">
+                    Send
+                </LinkButton>
             </div>
         );
     }
 }
 
-export default Cart;
+export default withStore(Cart);
