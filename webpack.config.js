@@ -2,15 +2,15 @@ let path = require('path');
 let MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 let conf = {
-    entry: './src/index.js',
+    entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, './dist/'),
-        filename: 'index.js',
+        filename: 'main.js',
         publicPath: 'dist/'
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'styles.css',
+            filename: 'styles.css'
         }),
     ],
     module: {
@@ -74,7 +74,15 @@ let conf = {
         }
     },
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
+        overlay: true,
+        proxy: {
+            '/reactcourseapi/**': {
+                target: 'http://faceprog.ru',
+                secure: false,
+                changeOrigin: true
+            }
+        }
     }
 };
 
